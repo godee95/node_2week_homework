@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "4321aaaa",
+    "password": "",
     "database": "database_development",
     "host": "express-database.csgg3jqefty5.ap-northeast-2.rds.amazonaws.com",
     "dialect": "mysql"
