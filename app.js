@@ -316,8 +316,6 @@ router.put("/comments/:commentId", authMiddleware, async(req,res) => {
     const { userId } = res.locals.user;
     const { commentId } = req.params;
     const { comment } = req.body;
-
-    console.log(commentId, userId);
   
     if(!comment){
       res.status(412).send({
@@ -355,6 +353,43 @@ router.put("/comments/:commentId", authMiddleware, async(req,res) => {
   }
 
 })
+
+// 댓글 삭제
+router.delete("/comments/:commentId", authMiddleware, async(req,res) => {
+  try {
+    const { userId } = res.locals.user;
+    const { commentId } = req.params;
+
+    const existCmt = await Comment.findByPk(commentId);
+    if(!existCmt) {
+      res.status(404).send({
+        errorMessage: "댓글이 존재하지 않습니다."
+      });
+      return;
+    }
+
+    const findcmt = await Comment.findOne({
+      where: { commentId, userId }
+    });
+
+    if(!findcmt){
+      res.status(400).send({
+        errorMessage: "댓글 삭제가 정상적으로 처리되지 않았습니다."
+      });
+      return;
+    }
+
+    await findcmt.destroy();
+    res.status(200).send({ message: "댓글을 삭제하였습니다." })
+  } catch(error) {
+    res.status(400).json({
+      errorMessage: "댓글 삭제에 실패하였습니다."
+    });
+  }
+
+})
+
+
 
 
 app.use("/api", express.urlencoded({ extended: false }), router);
