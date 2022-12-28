@@ -16,6 +16,12 @@
 
 ---
 
+#### API 및 코드 상세
+
+[tistory_blog](https://pangeei-h.tistory.com/entry/Nodejs-%EC%88%99%EB%A0%A8%EC%A3%BC%EC%B0%A8-%EC%88%99%EC%A0%9C-%EC%B5%9C%EC%A2%85-%EC%A0%9C%EC%B6%9C)
+
+---
+
 ### 실행(Terminal)
 
 ```bash
